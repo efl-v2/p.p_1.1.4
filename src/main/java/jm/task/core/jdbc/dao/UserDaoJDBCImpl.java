@@ -38,12 +38,10 @@ public class UserDaoJDBCImpl implements UserDao {
     public void dropUsersTable() {
         // Код для удаления таблицы
         try (Connection connection = Util.getConnection()) {
-            connection.setAutoCommit(false);
             String sql = "DROP TABLE IF EXISTS users";
             try (Statement statement = connection.createStatement()) {
                 statement.executeUpdate(sql);
             }
-            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
